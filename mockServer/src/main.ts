@@ -5,6 +5,8 @@ import defaultData from '../data/defaultData.json' assert { type: 'json' };
 const app = express();
 const port = 3001;
 
+const interests = defaultData.interests
+
 // Enable CORS for all routes
 app.use(cors());
 
@@ -13,8 +15,17 @@ app.use(express.json());
 
 // GET endpoint for interests
 app.get('/api/interests', (req, res) => {
-  res.json(defaultData.interests);
+  res.json(interests);
 });
+
+app.post('/api/interests', (req, res) => {
+  const newInterests = req.body
+  if(newInterests && newInterests.length) {
+    interests.push(...newInterests)
+  }
+  res.status(201).send('OK');
+});
+
 
 // GET endpoint for users
 app.get('/api/users', (req, res) => {

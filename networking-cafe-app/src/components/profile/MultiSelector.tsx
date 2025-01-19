@@ -1,9 +1,12 @@
-import { useState } from "react";
 import "./MultiSelector.css";
 import { getInterests } from "../../services/interestService";
 import { useQuery } from "@tanstack/react-query";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export const MultiSelector = () => {
+type InterestsSelectorProps = {
+  setInterests: Dispatch<SetStateAction<string[]>>;
+};
+export const InterestsSelector = ({ setInterests }: InterestsSelectorProps) => {
   const [selectedInterests, setSelectedInterests] = useState<{
     [key: string]: boolean;
   }>({});
@@ -24,6 +27,14 @@ export const MultiSelector = () => {
     };
     newSelected[interest] = !isSelected;
     setSelectedInterests(newSelected);
+
+    const interestList: string[] = [];
+    for (const interest in selectedInterests) {
+      if (selectedInterests[interest]) {
+        interestList.push(interest);
+      }
+    }
+    setInterests(interestList);
   };
 
   if (isLoading) return <p>Loading....</p>;
@@ -37,7 +48,8 @@ export const MultiSelector = () => {
           <button
             key={interest}
             className={`${selectedInterests[interest] ? "selected" : ""}`}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               toggleInterest(interest);
             }}
           >

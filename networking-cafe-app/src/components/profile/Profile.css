@@ -6,3 +6,12 @@
 .profile-page > * {
   margin-bottom: 16px;
 }
+
+.profile-page .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-page .form-field > * {
+  margin-bottom: 8px;
+}
