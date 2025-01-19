@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./MultiSelector.css";
-import { getInterests } from "../services/interestService";
+import { getInterests } from "../../services/interestService";
 import { useQuery } from "@tanstack/react-query";
 
 export const MultiSelector = () => {

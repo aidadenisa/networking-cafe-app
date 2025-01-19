@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
-import { Profile } from "./profile/Profile";
-
+import { Profile } from "./components/profile/Profile";
+import { UserContextProvider } from "./contexts/userContextProvider";
 // Create a client
 const queryClient = new QueryClient();
 
@@ -10,7 +10,9 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <h1> Networking Cafe</h1>
-        <Profile />
+        <UserContextProvider>
+          <Profile />
+        </UserContextProvider>
       </QueryClientProvider>
     </>
   );
