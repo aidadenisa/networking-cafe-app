@@ -1,0 +1,4 @@
+.multiselector > button.selected {
+  color: var(--color-accent);
+  background-color: #eaebff;
+}
