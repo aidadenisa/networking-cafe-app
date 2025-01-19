@@ -1,0 +1,99 @@
+{
+  "interests": [
+    "Software Development",
+    "Web3",
+    "Artificial Intelligence",
+    "Cloud Computing",
+    "DevOps",
+    "Cybersecurity",
+    "Data Science",
+    "UX/UI Design",
+    "Mobile Development",
+    "Venture Capital",
+    "Angel Investing",
+    "Startup Growth",
+    "Business Strategy",
+    "Digital Marketing",
+    "Product Management",
+    "Agile Methodologies",
+    "Blockchain Technology",
+    "Machine Learning",
+    "Financial Markets",
+    "E-commerce",
+    "Business Analytics",
+    "SaaS",
+    "Tech Leadership",
+    "Innovation Management",
+    "Market Research",
+    "Business Development",
+    "Entrepreneurship",
+    "Project Management",
+    "Digital Transformation",
+    "Reading",
+    "Sports",
+    "Travel"
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "interests": ["Software Development", "Artificial Intelligence", "Venture Capital", "Machine Learning"],
+      "availability": [
+        {
+          "day": "Monday",
+          "period": "morning"
+        },
+        {
+          "day": "Wednesday",
+          "period": "evening"
+        },
+        {
+          "day": "Friday",
+          "period": "afternoon"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "interests": ["Product Management", "Business Strategy", "Tech Leadership", "Travel"],
+      "availability": [
+        {
+          "day": "Tuesday",
+          "period": "afternoon"
+        },
+        {
+          "day": "Thursday",
+          "period": "morning"
+        },
+        {
+          "day": "Saturday",
+          "period": "evening"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Hannah Jefferson",
+      "interests": ["Software Development", "Artificial Intelligence", "Venture Capital", "Reading"],
+      "availability": [
+        {
+          "day": "Wednesday",
+          "period": "morning"
+        },
+        {
+          "day": "Wednesday",
+          "period": "evening"
+        },
+        {
+          "day": "Friday",
+          "period": "afternoon"
+        },
+        {
+          "day": "Saturday",
+          "period": "morning"
+        }
+      ]
+    }
+  ]
+}
