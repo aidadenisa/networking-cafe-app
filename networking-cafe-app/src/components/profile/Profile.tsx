@@ -18,6 +18,8 @@ export const Profile = () => {
       name,
       interests: interests,
     }));
+
+    // TODO: think about navigating to the network page
   };
 
   return (
@@ -28,12 +30,15 @@ export const Profile = () => {
           <label htmlFor="name">Name</label>
           <input
             name="name"
-            value={name}
+            defaultValue={state.name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="form-field">
-          <InterestsSelector setInterests={setInterests} />
+          <InterestsSelector
+            defaultInterests={state.interests}
+            setInterests={setInterests}
+          />
         </div>
         <PrimaryBtn>Save form</PrimaryBtn>
       </form>

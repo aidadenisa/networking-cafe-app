@@ -1,15 +1,29 @@
 import "./MultiSelector.css";
 import { getInterests } from "../../services/interestService";
 import { useQuery } from "@tanstack/react-query";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 type InterestsSelectorProps = {
+  defaultInterests: string[];
   setInterests: Dispatch<SetStateAction<string[]>>;
 };
-export const InterestsSelector = ({ setInterests }: InterestsSelectorProps) => {
+export const InterestsSelector = ({
+  defaultInterests,
+  setInterests,
+}: InterestsSelectorProps) => {
   const [selectedInterests, setSelectedInterests] = useState<{
     [key: string]: boolean;
   }>({});
+
+  useEffect(() => {
+    const initial: { [key: string]: boolean } = {};
+    if (defaultInterests && defaultInterests.length) {
+      for (let i = 0; i < defaultInterests.length; i++) {
+        initial[defaultInterests[i]] = true;
+      }
+    }
+    setSelectedInterests(initial);
+  }, []);
 
   const {
     data: interests,
