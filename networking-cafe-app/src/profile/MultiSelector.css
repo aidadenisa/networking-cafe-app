@@ -2,3 +2,8 @@
   color: var(--color-accent);
   background-color: #eaebff;
 }
+
+.multiselector > button {
+  margin-bottom: 8px;
+  margin-right: 8px;
+}
