@@ -1,11 +1,11 @@
-import "./MultiSelector.css";
-import { getInterests } from "../../services/interestService";
-import { useQuery } from "@tanstack/react-query";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import './InterestsSelector.css';
+import { getInterests } from '../../services/interestService';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 
 type InterestsSelectorProps = {
-  defaultInterests: string[];
-  setInterests: Dispatch<SetStateAction<string[]>>;
+  defaultInterests?: string[];
+  setInterests: (value: string[]) => void;
 };
 export const InterestsSelector = ({
   defaultInterests,
@@ -30,7 +30,7 @@ export const InterestsSelector = ({
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["interests"],
+    queryKey: ['interests'],
     queryFn: getInterests,
   });
 
@@ -61,7 +61,7 @@ export const InterestsSelector = ({
         interests.map((interest) => (
           <button
             key={interest}
-            className={`${selectedInterests[interest] ? "selected" : ""}`}
+            className={`${selectedInterests[interest] ? 'selected' : ''}`}
             onClick={(e) => {
               e.preventDefault();
               toggleInterest(interest);

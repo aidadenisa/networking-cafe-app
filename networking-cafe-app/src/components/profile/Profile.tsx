@@ -1,9 +1,9 @@
-import { ChangeEvent, useState } from "react";
-import { InterestsSelector } from "./MultiSelector";
-import "./Profile.css";
-import { PrimaryBtn } from "../general/PrimaryBtn";
-import { UserState } from "../../contexts/userContext";
-import { useUserContext } from "../../contexts/useUserContext";
+import { ChangeEvent, useState } from 'react';
+import { InterestsSelector } from './InterestsSelector';
+import './Profile.css';
+import { PrimaryBtn } from '../general/PrimaryBtn';
+import { UserState } from '../../contexts/userContext';
+import { useUserContext } from '../../contexts/useUserContext';
 
 export const Profile = () => {
   const { state, setState } = useUserContext();
