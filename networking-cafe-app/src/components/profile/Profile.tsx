@@ -6,10 +6,9 @@ import { UserState } from "../../contexts/userContext";
 import { useUserContext } from "../../contexts/useUserContext";
 
 export const Profile = () => {
-  const [name, setName] = useState("");
+  const { state, setState } = useUserContext();
+  const [name, setName] = useState(state.name);
   const [interests, setInterests] = useState<string[]>([]);
-
-  const { setState } = useUserContext();
 
   const saveProfile = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
