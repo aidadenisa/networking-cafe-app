@@ -1,13 +1,16 @@
-import { Network } from "../components/network/Network";
-import { Profile } from "../components/profile/Profile";
+import React from 'react';
+import { Network } from '../components/network/Network';
+
+// Lazy load profile
+const Profile = React.lazy(() => import('../components/profile/Profile'));
 
 export const routes = [
   {
-    path: "/",
+    path: '/',
     element: <Network />,
   },
   {
-    path: "/profile",
+    path: '/profile',
     element: <Profile />,
   },
 ];
