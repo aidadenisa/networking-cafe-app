@@ -1,7 +1,8 @@
 import './InterestsSelector.css';
 import { getInterests } from '../../services/interestService';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useDebounce } from '../../hooks/useDebounce';
 
 type InterestsSelectorProps = {
   defaultInterests?: string[];
@@ -14,6 +15,8 @@ export const InterestsSelector = ({
   const [selectedInterests, setSelectedInterests] = useState<{
     [key: string]: boolean;
   }>({});
+  const [filteredInterests, setFilteredInterests] = useState<string[]>([]);
+  const debounce = useDebounce(1000);
 
   useEffect(() => {
     const initial: { [key: string]: boolean } = {};
@@ -34,6 +37,10 @@ export const InterestsSelector = ({
     queryFn: getInterests,
   });
 
+  useEffect(() => {
+    setFilteredInterests(interests || []);
+  }, [interests]);
+
   const toggleInterest = (interest: string) => {
     const isSelected = selectedInterests[interest];
     const newSelected = {
@@ -51,14 +58,30 @@ export const InterestsSelector = ({
     setInterests(interestList);
   };
 
+  const filterInterests = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (!e.target || !e.target.value) return;
+    const filter = e.target.value || '';
+
+    debounce(() => {
+      console.log('making the req.');
+      setFilteredInterests(
+        interests?.filter((i) =>
+          i.toLowerCase().includes(filter.toLowerCase())
+        ) || []
+      );
+    });
+  };
+
   if (isLoading) return <p>Loading....</p>;
   if (error) return <p>There was an error! Please try again later</p>;
 
   return (
     <div className="multiselector">
       <p>Interests</p>
-      {interests &&
-        interests.map((interest) => (
+      <input type="text" onChange={filterInterests} />
+      {filteredInterests &&
+        filteredInterests.map((interest) => (
           <button
             key={interest}
             className={`${selectedInterests[interest] ? 'selected' : ''}`}
