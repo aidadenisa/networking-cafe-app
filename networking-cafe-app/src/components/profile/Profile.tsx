@@ -1,17 +1,26 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { InterestsSelector } from './InterestsSelector';
 import './Profile.css';
 import { PrimaryBtn } from '../general/PrimaryBtn';
 import { UserState } from '../../contexts/userContext';
 import { useUserContext } from '../../contexts/useUserContext';
+import { useNavigate } from 'react-router-dom';
 
-export const Profile = () => {
+const Profile = () => {
   const { state, setState } = useUserContext();
   const [name, setName] = useState(state.name);
   const [interests, setInterests] = useState<string[]>([]);
 
+  const randomNum = useRef<HTMLDivElement | null>(null);
+
+  const navigate = useNavigate();
+
   const saveProfile = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (randomNum.current) {
+      randomNum.current.innerHTML = Math.random().toString();
+    }
 
     setState((prevState: UserState) => ({
       ...prevState,
@@ -19,7 +28,7 @@ export const Profile = () => {
       interests: interests,
     }));
 
-    // TODO: think about navigating to the network page
+    navigate('/');
   };
 
   return (
@@ -40,8 +49,10 @@ export const Profile = () => {
             setInterests={setInterests}
           />
         </div>
+        <div className="randomNum" ref={randomNum}></div>
         <PrimaryBtn>Save form</PrimaryBtn>
       </form>
     </div>
   );
 };
+export default Profile;
